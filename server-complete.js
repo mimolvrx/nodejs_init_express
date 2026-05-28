@@ -96,3 +96,21 @@ app.put("/produtos", (req, res) => {
         produto: produtos
     });
 });
+
+app.delete("/produtos/:id", (req, res) => {
+    const id = req.params.id;
+    res.json({
+        mensagem: "Produto removido com sucesso"
+    });
+});
+
+// Usando o middleware de acesso
+app.get("/admin", verificarAcesso, (req, res) => {
+    res.json({
+        mensagem: "Área administrativa acessada"
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`);
+});
